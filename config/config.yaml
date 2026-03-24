@@ -1,4 +1,5 @@
 # add your sample names below, without .fasta extension
 samples:
-  - strain_01
-  - strain_02
+  - ID01_13C
+  - ID01-8A
+  - ID02-15
