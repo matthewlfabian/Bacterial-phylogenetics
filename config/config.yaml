@@ -1,0 +1,4 @@
+# add your sample names below, without .fasta extension
+samples:
+  - strain_01
+  - strain_02
