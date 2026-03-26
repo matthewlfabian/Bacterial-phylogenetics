@@ -1,5 +1,5 @@
 # add your sample names below, without .fasta extension
 samples:
-  - ID01_13C
+  - ID01-13C
   - ID01-8A
   - ID02-15
