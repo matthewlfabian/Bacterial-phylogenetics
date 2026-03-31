@@ -14,4 +14,4 @@ samples:
  
 # user-provided list of strains for FastANI input; if utilizing reference genomes or other known species designations in FastANI, add species names to "species" column; otherwise, leave "species" blank
  
-  strains_meta: "FastANI/strains.txt"
+ strains_meta: "FastANI/strains.txt"
