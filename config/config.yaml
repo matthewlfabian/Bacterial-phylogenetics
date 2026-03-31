@@ -1,5 +1,11 @@
 # add your sample names below, without .fasta extension
+
 samples:
   - ID01-13C
   - ID01-8A
   - ID02-15
+
+ 
+# user-provided list of strains for FastANI input; if utilizing reference genomes or other known species designations in FastANI, add species names to "species" column; otherwise, leave "species" blank
+ 
+  strains_meta: "FastANI/strains.txt"
