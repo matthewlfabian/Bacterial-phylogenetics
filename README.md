@@ -28,7 +28,10 @@ All dependencies are managed automatically via Conda using the
 environment files in the `envs/` directory.
 
 - FastANI
-- ...
+- assign_species
+- automlsa2
+- design_tree
+- gene_presence_absence
 
 # Setup
 1.) Clone the repository and activate the Snakemake environment:
@@ -41,7 +44,7 @@ environment files in the `envs/` directory.
 
   git remote -v
 
-3.) Edit `config/config.yaml` to include your strain/sample names. For example, for paired-end reads, 
+3.) Edit `config/config.yaml` to include your strain/samples. For example, for paired-end reads, 
 strain/sample names from FASTA files are identified as follows: <strain_1>_1.FASTA, <strain_1>_2.FASTA, <strain_2>_2.FASTA...
 
   samples:
@@ -49,13 +52,11 @@ strain/sample names from FASTA files are identified as follows: <strain_1>_1.FAS
     - SAMPLE2
     - ...
 
-# Running the Pipeline
+  
 
-This pipeline is designed to be run in 4 stages: 1.) initial quality assessment of raw FASTQs; 
-2.) FASTQ trimming and quality assessment of trimmed reads; 3.) genome assembly and quality assessment; 
-& 4.) genome annotation. By utilizing the comment mark (#) in the Snakefile, the workflow can be run stepwise, 
-permitting the review of FastQC, MultiQC, & QUAST QC reports before subsequent steps. The workflow can be run 
-in full by "uncommenting" all stages in the Snakefile. To run the Snakemake workflow on a HPCC:
+# PICK UP HERE
+
+This pipeline is designed to be run... To run the Snakemake workflow on a HPCC:
 
 ```bash
 snakemake --cores 10 --use-conda
@@ -76,29 +77,11 @@ snakemake --dag | dot -Tpng > docs/dag.png
 ```
 
 
-#### Stage 1: Raw read quality assessment
-To FastQC and MultiQC on raw reads, then review the MultiQC report 
-before proceeding to FASTQ trimming, "comment out" (add "#") Stages 2-4
-in the Snakefile, "rules" section, & run Snakemake. Review `MultiQC/raw/multiqc_report.html` 
-before continuing.
 
-#### Stage 2: Trimming & trimmed read quality assessment
-To proceed with trimming and a subsequent MultiQC report, "uncomment" Stage 2
-in the Snakefile & run Snakemake. Review `MultiQC/trimmed/multiqc_report.html` before 
-continuing.
-
-#### Stage 3: Assembly & quality assessment
-To proceed with assembly & QC, "uncomment" Stage 3 in the Snakefile & run
-Snakemake.
-
-#### Stage 4: Annotation
-To proceed with annotation, "uncomment" Stage 4 in the Snakefile & run
-Snakemake.
 
 # Adjusting parameters
 By editing the .smk files for each package in the "rules" subdirectory, parameters can be 
-individually adjusted as desired. For example, to adjust k-mer utilization for assembly 
-via SPAdes, open SPAdes.smk & edit the "-k" parameter.
+individually adjusted as desired. For example...
 
 
 # Other information
@@ -112,4 +95,4 @@ Matthew L. Fabian, Ph.D.
 
 
 
-Seemann, T. (2014). Prokka: Rapid prokaryotic genome annotation. Bioinformatics, 30(14), 2068–2069. https://doi.org/10.1093/bioinformatics/btu153
+...
