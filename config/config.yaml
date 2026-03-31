@@ -1,9 +1,15 @@
 # add your sample names below, without .fasta extension
 
 samples:
-  - ID01-13C
-  - ID01-8A
-  - ID02-15
+  - S.acidiscabies_ATCC-49003
+  - ND22-12-23B-1
+  - ND22-12-25A-2
+  - ND22-13-87A-1
+  - ND23-7-11A-3
+  - ND23-7-38A-2
+  - S.albidoflavus_NRRLB-1271
+  - S.antibioticus_NRRLB-1701
+
 
  
 # user-provided list of strains for FastANI input; if utilizing reference genomes or other known species designations in FastANI, add species names to "species" column; otherwise, leave "species" blank
