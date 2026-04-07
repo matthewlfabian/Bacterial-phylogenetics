@@ -1,4 +1,4 @@
-# add your sample names below, without .fasta extension
+# add your sample names below, without ".fasta" extension
 samples:
   - S.acidiscabies_ATCC-49003
   - ND22-12-23B-1
