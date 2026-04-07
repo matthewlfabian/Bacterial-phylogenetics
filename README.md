@@ -12,15 +12,15 @@ following steps:
 - Average nucleotide identity (FastANI)
 - Preparation of ANI matrix (Python)
 - Multi-locus sequence analysis (automlsa2)
-- Preparation of MLSA tree (R)
 - Gene presence/absence (BLAST, Python)
+- Preparation of annotated MLSA tree (R)
 
 Snakemake is a workflow management tool that facilitates organization & 
 reproducibility in bioinformatics workflows. Packages are designated via .yaml
 files ("envs" directory), & their corresponding parameters are found in .smk files in the "rules"
-directory. The "rule all" section of the Snakefile lists target (e.g., trimmed FASTQs, 
-scaffold FASTAs) outputs for the workflow, & Snakemake automatically determines which
-part(s) of the workflow to run, skipping any step whose output file already exists.
+directory. The "rule all" section of the Snakefile lists target outputs for the workflow, & Snakemake 
+automatically determines which part(s) of the workflow to run, skipping any step whose output file 
+already exists.
 
 # Dependencies
 
@@ -30,8 +30,8 @@ environment files in the `envs/` directory.
 - FastANI
 - assign_species
 - automlsa2
-- design_tree
 - gene_presence_absence
+- design_tree
 
 # Setup
 1.) Clone the repository and activate the Snakemake environment:
