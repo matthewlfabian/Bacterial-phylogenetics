@@ -1,5 +1,4 @@
 # add your sample names below, without .fasta extension
-
 samples:
   - S.acidiscabies_ATCC-49003
   - ND22-12-23B-1
@@ -10,8 +9,17 @@ samples:
   - S.albidoflavus_NRRLB-1271
   - S.antibioticus_NRRLB-1701
 
-
- 
 # user-provided list of strains for FastANI input; if utilizing reference genomes or other known species designations in FastANI, add species names to "species" column; otherwise, leave "species" blank
- 
 strains_meta: "FastANI/strains.txt"
+
+# directories for tblastn
+blast_dir: BLAST
+fasta_dir: FASTA
+blast_db_dir: BLAST/database
+
+# user-provided gene query FAAs for tblastn; place in directory after installation
+blast_queries:
+  txtA: BLAST/txtA.faa
+  txtB: BLAST/txtB.faa
+
+
