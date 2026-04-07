@@ -34,7 +34,7 @@ environment files in the `envs/` directory.
 - design_tree
 
 # Setup
-1.) Clone the repository and activate the Snakemake environment:
+1.) Create a parent directory (e.g., "phylogenetics"). In that parent directory, clone the repository and activate the Snakemake environment:
 
   git clone https://github.com/matthewlfabian/Bacterial-genome-assembly_Illumina-reads.git](https://github.com/matthewlfabian/Bacterial-phylogenetics.git
   
@@ -52,9 +52,8 @@ strain/sample names from FASTA files are identified as follows: <strain_1>_1.FAS
     - SAMPLE2
     - ...
 
-  
-
-# PICK UP HERE
+4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".FASTA" format, matching the 
+sample names entered in step 3.).
 
 This pipeline is designed to be run... To run the Snakemake workflow on a HPCC:
 
