@@ -38,7 +38,7 @@ environment files in the `envs/` directory.
 
   git remote -v
 
-3.) Edit `config/config.yaml` to include your strain/samples. For example, for paired-end reads, 
+3.) Edit "config/config.yaml" to include your strain/samples. For example, for paired-end reads, 
 strain/sample names from FASTA files are identified as follows: <strain_1>.FASTA, <strain_2>.FASTA, etc.
 
   samples:
@@ -49,9 +49,14 @@ strain/sample names from FASTA files are identified as follows: <strain_1>.FASTA
 4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".FASTA" format, matching the 
 sample names entered in step 3.).
 
-# Running the workflow
+5.) In the parent directory, create a subdirectory, "FastANI". In "FastANI", & per "config/config.yaml", create the tab-delimited text file "strains.txt", which lists the 
+user-defined strains (without ".FASTA" extension). This file should have a 2nd column, "species", to add designated species names for strains, as appropriate. This enables 
+the "assign_species.py" Python script to utilize designated species names when assigning species groups to as-yet-unidentified strains.
 
-This pipeline is designed to be run... 
+6.) In the parent directory, create a subdirectory, "BLAST". In "BLAST", add the amino acid FASTA files (i.e., ".FAA" format) for each gene of interest. These files are utilized
+as tblastn queries to identify the presence of those genes in the FASTA files for your input strains.
+
+# Running the workflow
 
 To run the Snakemake workflow on a HPCC:
 
@@ -72,8 +77,6 @@ To visualize the workflow structure via a directed acyclic graph (DAG):
 ```bash
 snakemake --dag | dot -Tpng > docs/dag.png
 ```
-
-
 
 
 # Adjusting parameters
