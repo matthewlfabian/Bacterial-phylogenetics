@@ -78,6 +78,13 @@ To visualize the workflow structure via a directed acyclic graph (DAG):
 snakemake --dag | dot -Tpng > docs/dag.png
 ```
 
+### Overview
+User-defined input genomes in ".FASTA" format are utilized by FastANI, in "all vs. all" mode, to calculate the pairwise average nucleotide identities (ANIs). Next, the 
+"assign_species.py" Python script utilizes the FastANI outputs, as well as any user-defined species designations in "strains.txt", to assign strains to species-level 
+groups. Gene presence/absence for user-defined gene queries (".FAA" format) is performed via BLAST (tblastn), followed by the "gene_presence_absence.py" Python script. AutoMLSA2 
+is utilized to generate a Newick file (".nex.iqtree" format) for producing a phylogenetic tree. Lastly, the "phylogenetic_tree.R" R script utilizes the Newick file, as well as 
+the gene presence/absence output, to produced an annotated, circular phylogenetic tree.
+
 
 # Adjusting parameters
 By editing the .smk files for each package in the "rules" subdirectory, parameters can be 
