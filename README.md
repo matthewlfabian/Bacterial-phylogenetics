@@ -6,14 +6,14 @@ complete bacterial genomes.
 
 # Overview
 
-This pipeline utilizes genome FASTA files as initial input for the
+This workflow utilizes genome FASTA files as initial input for the
 following steps:
 
 - Average nucleotide identity (FastANI)
-- Preparation of ANI matrix (Python)
+- Preparation of ANI matrix (Python script)
 - Multi-locus sequence analysis (automlsa2)
-- Gene presence/absence (BLAST, Python)
-- Preparation of annotated MLSA tree (R)
+- Gene presence/absence (BLAST, Python script)
+- Preparation of annotated MLSA tree (R script)
 
 Snakemake is a workflow management tool that facilitates organization & 
 reproducibility in bioinformatics workflows. Packages are designated via .yaml
@@ -27,14 +27,8 @@ already exists.
 All dependencies are managed automatically via Conda using the 
 environment files in the `envs/` directory.
 
-- FastANI
-- assign_species
-- automlsa2
-- gene_presence_absence
-- design_tree
-
 # Setup
-1.) Create a parent directory (e.g., "phylogenetics"). In that parent directory, clone the repository and activate the Snakemake environment:
+1.) On your HPCC cluster or local machine, create a parent directory (e.g., "phylogenetics"). In that parent directory, clone the repository and activate the Snakemake environment:
 
   git clone https://github.com/matthewlfabian/Bacterial-genome-assembly_Illumina-reads.git](https://github.com/matthewlfabian/Bacterial-phylogenetics.git
   
@@ -45,7 +39,7 @@ environment files in the `envs/` directory.
   git remote -v
 
 3.) Edit `config/config.yaml` to include your strain/samples. For example, for paired-end reads, 
-strain/sample names from FASTA files are identified as follows: <strain_1>_1.FASTA, <strain_1>_2.FASTA, <strain_2>_2.FASTA...
+strain/sample names from FASTA files are identified as follows: <strain_1>.FASTA, <strain_2>.FASTA, etc.
 
   samples:
     - SAMPLE1
@@ -55,7 +49,11 @@ strain/sample names from FASTA files are identified as follows: <strain_1>_1.FAS
 4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".FASTA" format, matching the 
 sample names entered in step 3.).
 
-This pipeline is designed to be run... To run the Snakemake workflow on a HPCC:
+# Running the workflow
+
+This pipeline is designed to be run... 
+
+To run the Snakemake workflow on a HPCC:
 
 ```bash
 snakemake --cores 10 --use-conda
