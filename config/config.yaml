@@ -9,7 +9,8 @@ samples:
   - S.albidoflavus_NRRLB-1271
   - S.antibioticus_NRRLB-1701
 
-# user-provided list of strains for FastANI input; if utilizing reference genomes or other known species designations in FastANI, add species names to "species" column; otherwise, leave "species" blank
+# user-provided, two-column ("strain"; "species") list of strains for FastANI input; add the sample names as designated above
+# if 1 or more input strains are reference genomes or otherwise have known species designations, add species names to "species" column; otherwise, leave "species" blank
 strains_meta: "FastANI/strains.txt"
 
 # directories for tblastn
