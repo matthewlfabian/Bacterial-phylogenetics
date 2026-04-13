@@ -17,5 +17,5 @@ rule automlsa2:
         "--allow_missing 1 "
         "-t {threads} "
         "-- output"
-        "> {log} 2>&1 && "
+        "> {log} 2>&1 ; "
         "mv output automlsa2/output"
