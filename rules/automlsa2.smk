@@ -5,6 +5,8 @@ rule automlsa2:
         directory("automlsa2/output")
     threads: 8
     conda: "../envs/automlsa2.yaml"
+    log:
+        "logs/automlsa2.log"
     shell:
         "python -m automlsa2 "
         "--dups "
