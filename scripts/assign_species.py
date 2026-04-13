@@ -1,7 +1,8 @@
 import pandas as pd
 import networkx as nx
 
-ani = pd.read_csv(snakemake.input.ani, sep="\t")
+ani = pd.read_csv(snakemake.input.ani, sep="\t" header=None,
+                  names=["strain_1", "strain_2", "ANI", "frag_mapped", "frag_total"])
 meta = pd.read_csv(snakemake.input.meta, sep="\t")
 
 G = nx.Graph()
