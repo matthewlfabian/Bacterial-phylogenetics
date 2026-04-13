@@ -8,7 +8,7 @@ rule automlsa2:
     log:
         "logs/automlsa2.log"
     shell:
-        "python -m automlsa2 "
+        "automlsa2 "
         "--dups "
         "--dir {config[fasta_dir]} "
         "--outgroup {config[automlsa2_outgroup]} "
