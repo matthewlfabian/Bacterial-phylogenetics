@@ -8,7 +8,7 @@ dependencies:
   - numpy=1.19
   - blast
   - mafft
-  - iqtree
+  - iqtree=2.*
   - pip
   - pip:
     - scipy==1.5.4
