@@ -1,4 +1,4 @@
-# Steps: FastANI & Python script => autoMLSA2 => tblastn
+# Steps: FastANI & Python script => autoMLSA2 => tblastn & Python script => ...
 
 configfile: "config/config.yaml"
 
@@ -15,9 +15,9 @@ rule all:
         "FastANI/strain_species_assigned.txt",
         "FastANI/ANI_matrix_species_ordered.txt",
 
-        # Stage 2: MLSA phylogeny; uncomment to continue
+        # Stage 2: MLSA phylogeny
         "automlsa2/[output]",
 
         # Stage 3: gene presence/absence; uncomment to continue
-        expand("tblastn/{sample}_results.tsv", sample=SAMPLES),
-        expand(config["blast_dir"] + "/{gene}_combined.txt", gene=GENES),
+        #expand("tblastn/{sample}_results.tsv", sample=SAMPLES),
+        #expand(config["blast_dir"] + "/{gene}_combined.txt", gene=GENES),
