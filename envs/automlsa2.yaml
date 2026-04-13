@@ -1,8 +1,8 @@
 name: automlsa2
 channels:
-  - defaults
   - conda-forge
   - bioconda
+  - defaults
 dependencies:
   - python=3.8
   - numpy=1.19
@@ -15,7 +15,7 @@ dependencies:
     - pandas==1.1.5
     - matplotlib==3.3.4
     - biopython==1.78
-    - "--no-deps automlsa2"
+    - automlsa2
     - rich
     - packaging
     - psutil
