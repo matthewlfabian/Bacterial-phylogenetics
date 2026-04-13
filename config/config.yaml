@@ -1,4 +1,4 @@
-# add your sample names below, without ".fasta" extension
+# user-designated list of strains/species; add your sample names below, without ".fasta" extension
 samples:
   - S.acidiscabies_ATCC-49003
   - ND22-12-23B-1
@@ -8,17 +8,23 @@ samples:
   - ND23-7-38A-2
   - S.albidoflavus_NRRLB-1271
   - S.antibioticus_NRRLB-1701
+  - K.viridis_DSM-44826
 
 # user-provided, two-column ("strain"; "species") list of strains for FastANI input; add the sample names as designated above
-# if 1 or more input strains are reference genomes or otherwise have known species designations, add species names to "species" column; otherwise, leave "species" blank
+# if 1 or more input strains are reference genomes, or otherwise have known species designations, add species names to "species" column; otherwise, leave "species" blank.
 strains_meta: "FastANI/strains.txt"
+
+# user-provided outgroup strain; add a strain ID from the list above
+# user-provided housekeeping (HK) gene FASTA for MLSA
+automlsa2_outgroup: "K.viridis_DSM-44826"
+automlsa2_query: "automlsa2/HK_genes.fasta"
 
 # directories for tblastn
 blast_dir: BLAST
 fasta_dir: FASTA
 blast_db_dir: BLAST/database
 
-# user-provided gene query FAAs for tblastn; place in directory after installation
+# user-provided gene query FAAs (amino acid FASTA files) for tblastn
 blast_queries:
   txtA: BLAST/txtA.faa
   txtB: BLAST/txtB.faa
