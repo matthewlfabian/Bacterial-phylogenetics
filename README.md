@@ -58,7 +58,7 @@ as tblastn queries to identify the presence of those genes in the FASTA files fo
 
 # Running the workflow
 
-To run the Snakemake workflow on a HPCC:
+To run the Snakemake workflow on a HPCC, using SLURM as appropriate:
 
 ```bash
 snakemake --cores 10 --use-conda
