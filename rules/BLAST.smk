@@ -39,3 +39,13 @@ mismatches\tgap_opens\tq_start\tq_end\ts_start\ts_end\tevalue\tbit_score" > {out
             -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
         | awk -v base="{wildcards.strain}" 'BEGIN{{OFS="\t"}} {{print base, $0}}' >> {output}
         """
+
+rule combine_blast:
+    input:
+        expand(config["blast_dir"] + "/{gene}/{strain}.txt", strain=STRAINS, allow_missing=True)
+    output:
+        config["blast_dir"] + "/{gene}_combined.txt"
+    shell:
+        """
+        awk 'NR==1 || FNR!=1' {input} > {output}
+        """
