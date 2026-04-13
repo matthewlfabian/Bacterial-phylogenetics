@@ -16,7 +16,8 @@ rule all:
         "FastANI/ANI_matrix_species_ordered.txt",
 
         # Stage 2: MLSA phylogeny; uncomment to continue
-        # "automlsa2/[output]",
+        "automlsa2/[output]",
 
         # Stage 3: gene presence/absence; uncomment to continue
-        # expand("tblastn/{sample}_results.tsv", sample=SAMPLES),
+        expand("tblastn/{sample}_results.tsv", sample=SAMPLES),
+        expand(config["blast_dir"] + "/{gene}_combined.txt", gene=GENES),
