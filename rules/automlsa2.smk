@@ -14,6 +14,5 @@ rule automlsa2:
         "--outgroup {config[automlsa2_outgroup]} "
         "--query {config[automlsa2_query]} "
         "--allow_missing 1 "
-        "--missing_check "
         "-t {threads} "
         "-- output"
