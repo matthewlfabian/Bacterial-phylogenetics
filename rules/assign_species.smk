@@ -6,8 +6,8 @@ rule assign_species:
         strain_species="FastANI/strain_species_assigned.txt",
         ani_matrix="FastANI/ANI_matrix_species_ordered.txt"
     conda:
-        "envs/assign_species.yaml"
+        "../envs/assign_species.yaml"
     log:
         "logs/assign_species.log"
     script:
-        "scripts/assign_species.py"
+        "../scripts/assign_species.py"
