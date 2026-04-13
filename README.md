@@ -25,7 +25,7 @@ already exists.
 # Dependencies
 
 All dependencies are managed automatically via Conda using the 
-environment files in the `envs/` directory.
+environment files in the "envs" directory.
 
 # Setup
 1.) On your HPCC cluster or local machine, create a parent directory (e.g., "phylogenetics"). In that parent directory, clone the repository and activate the Snakemake environment:
@@ -39,21 +39,26 @@ environment files in the `envs/` directory.
   git remote -v
 
 3.) Edit "config/config.yaml" to include your strain/samples. For example, for paired-end reads, 
-strain/sample names from FASTA files are identified as follows: <strain_1>.FASTA, <strain_2>.FASTA, etc.
+strain/sample names from FASTA files are identified as follows: <strain_1>.fasta, <strain_2>.fasta, etc.
 
   samples:
     - SAMPLE1
     - SAMPLE2
     - ...
 
-4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".FASTA" format, matching the 
+4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".fasta" format, matching the 
 sample names entered in step 3.).
 
 5.) In the parent directory, create a subdirectory, "FastANI". In "FastANI", & per "config/config.yaml", create the tab-delimited text file "strains.txt", which lists the 
 user-defined strains (without ".FASTA" extension). This file should have a 2nd column, "species", to add designated species names for strains, as appropriate. This enables 
 the "assign_species.py" Python script to utilize designated species names when assigning species groups to as-yet-unidentified strains.
 
-6.) In the parent directory, create a subdirectory, "BLAST". In "BLAST", add the amino acid FASTA files (i.e., ".FAA" format) for each gene of interest. These files are utilized
+6.) Edit "config/config.yaml" to denote the outgroup, from your existing list of input strains/species, for MLSA.
+
+7.) In the parent directory, create a subdirectory, "automlsa2". In "automlsa2", & per "config/config.yaml", add the single nucleotide FASTA containing the sequences for
+housekeeping genes for MLSA. 
+
+8.) In the parent directory, create a subdirectory, "BLAST". In "BLAST", add the amino acid FASTA files (i.e., ".FAA" format) for each gene of interest. These files are utilized
 as tblastn queries to identify the presence of those genes in the FASTA files for your input strains.
 
 # Running the workflow
@@ -81,9 +86,7 @@ snakemake --dag | dot -Tpng > docs/dag.png
 ### Overview
 User-defined input genomes in ".FASTA" format are utilized by FastANI, in "all vs. all" mode, to calculate the pairwise average nucleotide identities (ANIs). Next, the 
 "assign_species.py" Python script utilizes the FastANI outputs, as well as any user-defined species designations in "strains.txt", to assign strains to species-level 
-groups. Gene presence/absence for user-defined gene queries (".FAA" format) is performed via BLAST (tblastn), followed by the "gene_presence_absence.py" Python script. AutoMLSA2 
-is utilized to generate a Newick file (".nex.iqtree" format) for producing a phylogenetic tree. Lastly, the "phylogenetic_tree.R" R script utilizes the Newick file, as well as 
-the gene presence/absence output, to produced an annotated, circular phylogenetic tree.
+groups. AutoMLSA2 is utilized to generate a Newick file (".nex.iqtree" format) for producing a phylogenetic tree. Gene presence/absence for user-defined gene queries (".FAA" format) is performed via BLAST (tblastn), followed by the "gene_presence_absence.py" Python script. Lastly, the "phylogenetic_tree.R" R script utilizes the Newick file, as well as the gene presence/absence output, to produced an annotated, circular phylogenetic tree.
 
 
 # Adjusting parameters
