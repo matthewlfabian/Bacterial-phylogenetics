@@ -37,5 +37,17 @@ def flag_true_hits(df: pd.DataFrame,
     return df
 df = flag_true_hits(df)
 
-print(df[["strain", "gene", "percent_identity", "query_coverage", "evalue", "true_hit"]].head(12))
-df.to_excel("hits_all.xlsx", index=False)
+presence = (
+    df[df["true_hit"]]
+    .groupby(["strain", "gene"])
+    .size()
+    .gt(0)
+    .astype(int)
+    .unstack(fill_value=0)
+    .reset_index()
+)
+
+for gene in df["gene"].unique():
+    if gene not in presence.columns:
+        presence[gene] = 0
+presence.to_csv("gene_presence_absence.tsv", sep="\t", index=False)
