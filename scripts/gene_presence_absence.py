@@ -26,7 +26,7 @@ def load_blast_files(gene_files: dict, data_dir: str = ".") -> pd.DataFrame:
 df = load_blast_files(gene_files, data_dir=".")
 
 def add_coverage(df: pd.DataFrame, query_lengths: dict) -> pd.DataFrame:
-                    df = df.copy()
+    df = df.copy()
     df["query_length"] = df["gene"].map(query_lengths)
     df["query_coverage"] = (df["q_end"] - df["q_start"] + 1) / df["query_length"] * 100
     return df
