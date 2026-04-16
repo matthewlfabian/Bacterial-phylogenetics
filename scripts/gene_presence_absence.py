@@ -2,32 +2,40 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
+gene_files      = snakemake.config["gene_files"]
+query_lengths   = snakemake.config["query_lengths"]
+identity_thresh = snakemake.config["identity_thresh"]
+coverage_thresh = snakemake.config["coverage_thresh"]
+evalue_thresh   = snakemake.config["evalue_thresh"]
+
+col_names = [
+    "strain", "query_id", "subject_id", "percent_identity",
+    "alignment_length", "mismatches", "gap_opens",
+    "q_start", "q_end", "s_start", "s_end", "evalue", "bit_score"
+]
+
 def load_blast_files(gene_files: dict, data_dir: str = ".") -> pd.DataFrame:
     frames = []
     for gene, fname in gene_files.items():
         path = Path(data_dir) / fname
         df = pd.read_csv(path, sep="\t", header=0)
-        df.columns = COL_NAMES
+        df.columns = col_names
         df["gene"] = gene
         frames.append(df)
     return pd.concat(frames, ignore_index=True)
-df = load_blast_files(GENE_FILES, data_dir=".")
+df = load_blast_files(gene_files, data_dir=".")
 
 def add_coverage(df: pd.DataFrame, query_lengths: dict) -> pd.DataFrame:
                     df = df.copy()
     df["query_length"] = df["gene"].map(query_lengths)
     df["query_coverage"] = (df["q_end"] - df["q_start"] + 1) / df["query_length"] * 100
     return df
-df = add_coverage(df, QUERY_LENGTHS)
-
-IDENTITY_THRESH = 40.0
-COVERAGE_THRESH = 70.0
-EVALUE_THRESH   = 1e-5  
+df = add_coverage(df, query_lengths)
 
 def flag_true_hits(df: pd.DataFrame,
-                   identity_thresh: float = IDENTITY_THRESH,
-                   coverage_thresh: float = COVERAGE_THRESH,
-                   evalue_thresh:   float = EVALUE_THRESH) -> pd.DataFrame:
+                   identity_thresh: float = identity_thresh,
+                   coverage_thresh: float = coverage_thresh,
+                   evalue_thresh:   float = evalue_thresh) -> pd.DataFrame:
     df = df.copy()
     df["true_hit"] = (
         (df["percent_identity"] >= identity_thresh) &
