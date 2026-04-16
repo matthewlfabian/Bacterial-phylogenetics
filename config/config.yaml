@@ -29,4 +29,10 @@ blast_queries:
   txtA: BLAST/txtA.faa
   txtB: BLAST/txtB.faa
 
+# user-provided gene query lengths, in amino acids, for gene presence/absence analysis
+query_lengths:
+  txtA: 1478
+  txtB: 1509
+  
+
 
