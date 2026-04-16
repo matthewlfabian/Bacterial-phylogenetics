@@ -29,10 +29,22 @@ blast_queries:
   txtA: BLAST/txtA.faa
   txtB: BLAST/txtB.faa
 
-# user-provided gene query lengths, in amino acids, for gene presence/absence analysis
+# user-provided inputs for gene presence/absence analysis
+# ensure that "gene_files" (from BLAST.smk) & "query_lengths" (lengths, in amino acids, for each gene of interest) match "blast_queries" above
+# "_thresh" values can be adjusted per user preference
+gene_files:
+  txtA: "BLAST/txtA_combined.txt"
+  txtB: "BLAST/txtB_combined.txt"
+
 query_lengths:
   txtA: 1478
   txtB: 1509
+
+identity_thresh: 40.0
+coverage_thresh: 70.0
+evalue_thresh: 1e-5
+
+
   
 
 
