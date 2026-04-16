@@ -8,18 +8,11 @@ identity_thresh = snakemake.config["identity_thresh"]
 coverage_thresh = snakemake.config["coverage_thresh"]
 evalue_thresh   = snakemake.config["evalue_thresh"]
 
-col_names = [
-    "strain", "query_id", "subject_id", "percent_identity",
-    "alignment_length", "mismatches", "gap_opens",
-    "q_start", "q_end", "s_start", "s_end", "evalue", "bit_score"
-]
-
 def load_blast_files(gene_files: dict, data_dir: str = ".") -> pd.DataFrame:
     frames = []
     for gene, fname in gene_files.items():
         path = Path(data_dir) / fname
         df = pd.read_csv(path, sep="\t", header=0)
-        df.columns = col_names
         df["gene"] = gene
         frames.append(df)
     return pd.concat(frames, ignore_index=True)
