@@ -1,13 +1,11 @@
-rule assign_species:
+rule gene_presence_absence:
     input:
-        ani="FastANI/output.txt",
-        meta=config["strains_meta"]
+        expand(config["blast_dir"] + "/{gene}_combined.txt", gene=GENES)
     output:
-        strain_species="FastANI/strain_species_assigned.txt",
-        ani_matrix="FastANI/ANI_matrix_species_ordered.txt"
+        txt = "BLAST/gene_presence_absence.txt"
     conda:
-        "../envs/assign_species.yaml"
+        "../envs/gene_presence_absence.yaml"
     log:
-        "logs/assign_species.log"
+        "logs/gene_presence_absence.log"
     script:
-        "../scripts/assign_species.py"
+        "../scripts/gene_presence_absence.py"
