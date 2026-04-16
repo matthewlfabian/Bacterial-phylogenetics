@@ -6,7 +6,7 @@ def load_blast_files(gene_files: dict, data_dir: str = ".") -> pd.DataFrame:
     frames = []
     for gene, fname in gene_files.items():
         path = Path(data_dir) / fname
-        df = pd.read_csv(path, sep="\t", header=1)
+        df = pd.read_csv(path, sep="\t", header=0)
         df.columns = COL_NAMES
         df["gene"] = gene
         frames.append(df)
