@@ -51,4 +51,4 @@ presence = (
 for gene in df["gene"].unique():
     if gene not in presence.columns:
         presence[gene] = 0
-presence.to_csv("gene_presence_absence.tsv", sep="\t", index=False)
+presence.to_csv("gene_presence_absence.txt", sep="\t", index=False)
