@@ -10,10 +10,9 @@ This workflow utilizes genome FASTA files as initial input for the
 following steps:
 
 - Average nucleotide identity (FastANI)
-- Preparation of ANI matrix (Python script)
+- Preparation of ANI matrix (Python)
 - Multi-locus sequence analysis (automlsa2)
-- Gene presence/absence (BLAST, Python script)
-- Preparation of annotated MLSA tree (R script)
+- Gene presence/absence (BLAST, Python)
 
 Snakemake is a workflow management tool that facilitates organization & 
 reproducibility in bioinformatics workflows. Packages are designated via .yaml
@@ -46,19 +45,19 @@ strain/sample names from FASTA files are identified as follows: <strain_1>.fasta
     - SAMPLE2
     - ...
 
-4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input samples in ".fasta" format, matching the 
+4.) In the parent directory, create a subdirectory, "FASTA". In "FASTA", add your input sample genomes in ".fasta" format, matching the 
 sample names entered in step 3.).
 
 5.) In the parent directory, create a subdirectory, "FastANI". In "FastANI", & per "config/config.yaml", create the tab-delimited text file "strains.txt", which lists the 
-user-defined strains (without ".FASTA" extension). This file should have a 2nd column, "species", to add designated species names for strains, as appropriate. This enables 
+user-defined strains (without ".fasta" file extension). This file should have a 2nd column, "species", to add designated species names for strains, as appropriate. This enables 
 the "assign_species.py" Python script to utilize designated species names when assigning species groups to as-yet-unidentified strains.
 
 6.) Edit "config/config.yaml" to denote the outgroup, from your existing list of input strains/species, for MLSA.
 
-7.) In the parent directory, create a subdirectory, "automlsa2". In "automlsa2", & per "config/config.yaml", add the single nucleotide FASTA containing the sequences for
-housekeeping genes for MLSA. 
+7.) In the parent directory, create a subdirectory, "automlsa2". In "automlsa2", & per "config/config.yaml", add a FASTA file containing the nucleotide sequences for
+housekeeping genes for MLSA, with headers (e.g., "> gene1", "> gene 2", etc.) above each separate gene sequence.
 
-8.) In the parent directory, create a subdirectory, "BLAST". In "BLAST", add the amino acid FASTA files (i.e., ".FAA" format) for each gene of interest. These files are utilized
+8.) In the parent directory, create a subdirectory, "BLAST". In "BLAST", add the amino acid FASTA files (i.e., ".faa" format) for each gene of interest. These files are utilized
 as tblastn queries to identify the presence of those genes in the FASTA files for your input strains.
 
 # Running the workflow
@@ -90,8 +89,9 @@ groups. AutoMLSA2 is utilized to generate a Newick file (".nex.iqtree" format) f
 
 
 # Adjusting parameters
-By editing the .smk files for each package in the "rules" subdirectory, parameters can be 
-individually adjusted as desired. For example...
+Parameters (e.g., % coverage threshold for gene presence "hits") for gene_presence_absence.py can be edited in config.yaml. As noted above, config.yaml should be edited for all user-specified inputs, e.g., input
+genomes, reference gene sequences for ANI, etc. Additionally, "rules" (".smk") files for individual steps in the workflow can be modified as necessary. For example, "BLAST.smk" can be edited to allow for a greater number of 
+potential gene presence "hits" (i.e., "max_target_seqs") to be selected by tblastn. Consult the reference material for individual software programs and packages as necessary. 
 
 
 # Other information
@@ -102,6 +102,14 @@ Matthew L. Fabian, Ph.D.
 
 
 ### References
+
+Camacho, C., et al. (2009). BLAST+: Architecture and applications. BMC Bioinformatics, 10, 421. https://doi.org/10.1186/1471-2105-10-421
+
+Jain, C., et al. High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries. Nature Communications, 9, 5114. https://doi.org/10.1038/s41467-018-07641-9
+
+Köster, J., & Rahmann, S. (2012). Snakemake — a scalable bioinformatics workflow engine. Bioinformatics, 28(19), 2520–2522. https://doi.org/10.1093/bioinformatics/bts480
+
+Sherman, D. J., et al. (2009). autoMLSA: Automating concatenated gene analyses for phylogenetic reconstruction. Bioinformatics, 25(6), 808–810. https://doi.org/10.1093/bioinformatics/btp050
 
 
 
