@@ -40,7 +40,7 @@ query_lengths:
   txtA: 1478
   txtB: 1509
 
-identity_thresh: 40.0
+identity_thresh: 70.0
 coverage_thresh: 70.0
 evalue_thresh: 1e-5
 
