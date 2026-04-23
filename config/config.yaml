@@ -1,14 +1,8 @@
 # user-designated list of strains/species; add your sample names below, without ".fasta" extension
 samples:
-  - S.acidiscabies_ATCC-49003
-  - ND22-12-23B-1
-  - ND22-12-25A-2
-  - ND22-13-87A-1
-  - ND23-7-11A-3
-  - ND23-7-38A-2
-  - S.albidoflavus_NRRLB-1271
-  - S.antibioticus_NRRLB-1701
-  - K.viridis_DSM-44826
+  - <sample 1>
+  - <sample 2>
+  - ...
 
 # user-provided, two-column ("strain"; "species") list of strains for FastANI input; add the sample names as designated above
 # if 1 or more input strains are reference genomes, or otherwise have known species designations, add species names to "species" column; otherwise, leave "species" blank.
@@ -16,7 +10,7 @@ strains_meta: "FastANI/strains.txt"
 
 # user-provided outgroup strain; add a strain ID from the list above
 # user-provided housekeeping (HK) gene FASTA for MLSA
-automlsa2_outgroup: "K.viridis_DSM-44826"
+automlsa2_outgroup: "<outgroup species/strain>"
 automlsa2_query: "automlsa2/HK_genes.fasta"
 
 # directories for tblastn
@@ -26,19 +20,22 @@ blast_db_dir: BLAST/database
 
 # user-provided gene query FAAs (amino acid FASTA files) for tblastn
 blast_queries:
-  txtA: BLAST/txtA.faa
-  txtB: BLAST/txtB.faa
+  <gene 1>: BLAST/<gene 1>.faa
+  <gene 2>: BLAST/<gene 2>.faa
+  ...
 
 # user-provided inputs for gene presence/absence analysis
 # ensure that "gene_files" (from BLAST.smk) & "query_lengths" (lengths, in amino acids, for each gene of interest) match "blast_queries" above
 # "_thresh" values can be adjusted per user preference
 gene_files:
-  txtA: "BLAST/txtA_combined.txt"
-  txtB: "BLAST/txtB_combined.txt"
+  <gene 1>: "BLAST/<gene 1>_combined.txt"
+  <gene 1>: "BLAST/<gene 2>_combined.txt"
+  ...
 
 query_lengths:
-  txtA: 1478
-  txtB: 1509
+  <gene 1>: <length, aa>
+  <gene 2>: <length, aa>
+  ...
 
 identity_thresh: 70.0
 coverage_thresh: 70.0
